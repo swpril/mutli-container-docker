@@ -14,3 +14,8 @@ after_success:
   - docker build -t swpril/multi-nginx ./nginx
   - docker build -t swpril/multi-worker ./worker
   - docker build -t swpril/multi-server ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push swpril/multi-client
+  - docker push swpril/multi-nginx
+  - docker push swpril/multi-server
+  - docker push swpril/multi-worker
